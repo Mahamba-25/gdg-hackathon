@@ -1,1 +1,2 @@
 Gemini_API="AIzaSyB6og7nLlujFyReqHnRJgRtqBzfz85PhmE"
+Telegram_BOT_APIR="8188039347:AAFOEPZFYEy5zSPirE0E-IQUSvfdcaS3M9w"

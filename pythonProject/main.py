@@ -1,8 +1,10 @@
+import pandas as pd
+import config
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
 # Replace 'YOUR_API_KEY' with your actual API key
-API_KEY = '8188039347:AAFOEPZFYEy5zSPirE0E-IQUSvfdcaS3M9w'
+API_KEY = config.Gemini_API
 bot = telebot.TeleBot(API_KEY)
 
 # Global variable to hold the stations
