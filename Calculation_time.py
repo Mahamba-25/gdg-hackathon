@@ -19,3 +19,30 @@ columns_to_keep = [col for col in data.columns if col not in columns_to_exclude]
 data = data[columns_to_keep]
 
 data
+
+# To check which bus has the most data
+
+# Group the data by Bus_Registration_No and count the number of rows for each registration number
+registration_counts = data['Bus_Registration_No'].value_counts()
+
+# Find the registration number with the largest number of rows
+max_registration_number = registration_counts.idxmax()
+
+# Get the count for the registration number with the largest number of rows
+max_registration_count = registration_counts.max()
+
+# Output the result
+print(f"The registration number with the largest number of rows is: {max_registration_number}")
+print(f"The count of rows for this registration number is: {max_registration_count}")
+
+# Assing target and features
+y=filtered_data['total_time_taken_per_trip']
+X=filtered_data.drop('total_time_taken_per_trip',axis=1)
+
+# Split dataset to train and test using Holdout method
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Standardize the features (optional but can be beneficial for some models)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
