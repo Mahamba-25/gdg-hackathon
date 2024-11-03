@@ -1,11 +1,11 @@
+#pip install telebot
+# @Insight_A_I_BOT
 import pandas as pd
-import config
+import config as cfg
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
-# Replace 'YOUR_API_KEY' with your actual API key
-API_KEY = config.Gemini_API
-bot = telebot.TeleBot(API_KEY)
+bot = telebot.TeleBot(cfg.Telegram_BOT_API)
 
 # Global variable to hold the stations
 stations = []
