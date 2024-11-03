@@ -1,0 +1,7 @@
+pip install pandas
+pip install telebot
+pip install scikit-learn
+pip install joblib
+
+pyenv install 3.12.x
+pyenv install 3.13.x

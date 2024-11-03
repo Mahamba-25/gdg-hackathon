@@ -5,8 +5,8 @@ from sklearn.metrics import mean_absolute_error
 import joblib  # Import joblib for saving the model
 
 # Load the datasets
-bus_stop_data = pd.read_csv("bus_stop")  # Ensure the correct filename with extension
-stop_data = pd.read_csv("name_of_station")  # Ensure the correct filename with extension
+bus_stop_data = pd.read_csv("Datasets/bus_stop")  # Ensure the correct filename with extension
+stop_data = pd.read_csv("Datasets/name_of_station")  # Ensure the correct filename with extension
 
 # Convert data types if necessary
 bus_stop_data['bus_stop'] = bus_stop_data['bus_stop'].astype(str)
