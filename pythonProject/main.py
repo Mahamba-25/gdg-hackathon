@@ -1,9 +1,13 @@
-#pip install telebot
-# @Insight_A_I_BOT
 import pandas as pd
+from huggingface_hub import metadata_save
+
 import config as cfg
 import telebot
+
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+from pythonProject.stations_name import stations_name
+
+import Datasets
 
 bot = telebot.TeleBot(cfg.Telegram_BOT_API)
 
@@ -13,7 +17,7 @@ stations = []
 
 # Define a handler for the /start command
 @bot.message_handler(commands=['start'])
-def send_welcome(message):
+def start_message(message):
     # Send a welcome message with options
     bot.send_message(message.chat.id, f"- Привет, {message.from_user.first_name}!😄 ")
     bot.send_message(
@@ -22,35 +26,16 @@ def send_welcome(message):
         parse_mode='Markdown'
     )
     global stations  # Use global variable
-    stations = stations_name("name_of_station")
-    send_all(message, stations)
+    stations = stations_name("Datasets/name_of_station")
 
 
-def stations_name(file_path):
-    # Initialize an empty list to hold the station dictionaries
-    station = []
-
-    # Open the file and read its contents
-    with open(file_path, 'r') as file:
-        # Read the header line to skip it
-        header = file.readline().strip().split(',')
-
-        # Process each subsequent line
-        for line in file:
-            # Strip whitespace and split the line by commas
-            data = line.strip().split(',')
-
-            # Create a dictionary for the station with the relevant fields
-            station_dict = {
-                'stop_id': data[0],
-                'address': data[3]  # This is where the station name is located
-            }
-
-            # Append the dictionary to the list
-            station.append(station_dict)
-    return station
+@bot.message_handler(content_types='text')
+def message_reply(message):
+    if message.text=="Kandy":
+        bot.send_message(message.chat.id, "Kandy")
 
 
+@bot.message_handler(commands=['button'])
 def send_all(message, station):
     # Create a keyboard with buttons split into two columns
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
